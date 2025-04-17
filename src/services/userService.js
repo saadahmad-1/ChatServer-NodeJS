@@ -1,5 +1,5 @@
 import responses from "../constants/responses";
-const { User, Transaction } = require("../models");
+const { User } = require("../models/User");
 
 class UserService {
   createUser = async (payload, file) => {
