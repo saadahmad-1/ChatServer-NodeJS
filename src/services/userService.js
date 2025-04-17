@@ -6,12 +6,12 @@ class UserService {
     const {
       firstName,
       lastName,
-      phone,
+      phoneNumber,
     } = payload;
 
     let existingUser = await User.findOne({ where: { phone } });
     if (existingUser) {
-      return responses[102]("Phone is already registered");
+      return responses[102]("Phone Number is already registered");
     }
     const parseJSON = (data) => {
       try {
@@ -24,7 +24,7 @@ class UserService {
     let newUser = await User.create({
       firstName,
       lastName,
-      phone,
+      phoneNumber,
     });
     return responses[0]("User Created Successfully");
   };
