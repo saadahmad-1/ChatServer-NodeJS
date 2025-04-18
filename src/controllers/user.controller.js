@@ -3,7 +3,7 @@ import UserService from "../services/userService";
 const userService = new UserService();
 
 
-export const createUser = async (req, res) => {
+export const createUser = async (req, res, next) => {
   try {
     let resp = await userService.createUser(req.body);
 

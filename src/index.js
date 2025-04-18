@@ -5,6 +5,8 @@ import express from "express";
 import cors from "cors";
 import sequelize from "./config/db";
 import { errorHandler } from "./middlewares/errorHandler";
+import routes from "./routes/routes";
+
 const app = express();
 const port = 3002;
 
@@ -21,7 +23,7 @@ app.get("/", async (req, res) => {
   });
 });
 
-app.use("/api", require("./routes/routes"));
+app.use("/api", routes);
 app.use(errorHandler);
 // Authenticate database connection and start the server
 sequelize

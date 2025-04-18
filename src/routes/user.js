@@ -1,12 +1,14 @@
-const Router = require("express").Router();
+import Router from "express";
 import * as userController from "../controllers/user.controller";
 import { validate } from "../middlewares/validator";
 import { createUserSchema } from "../constants/schemaValidations";
 
-Router.post(
+const router = Router();
+
+router.post(
     "/v1/createUser",
     validate(createUserSchema),
     userController.createUser
 );
 
-module.exports = Router;
+export default router;
