@@ -1,6 +1,10 @@
-import Router from "express";
-import userRoutes from "./user";
+import { Router } from "express";
+import userRoutes from "./user.js";
+import chatRoutes from "./chat.js";
 
-Router.use("/users", userRoutes);
+const router = Router();
 
-export default Router;
+router.use("/users", userRoutes);
+router.use("/chat", chatRoutes);
+
+export default router;

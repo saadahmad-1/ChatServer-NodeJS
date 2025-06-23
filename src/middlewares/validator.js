@@ -1,4 +1,4 @@
-import responses from "../constants/responses";
+import responses from "../constants/responses.js";
 
 export const validate = (schema, type = "Body") => {
   return (req, res, next) => {

@@ -1,4 +1,4 @@
-import responses from "../constants/responses";
+import responses from "../constants/responses.js";
 
 export const errorHandler = (err, req, res, next) => {
   console.error(err);

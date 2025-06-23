@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize";
-import { dbConfig } from "../constants/envVars";
+import { dbConfig } from "../constants/envVars.js";
 
 const sequelize = new Sequelize({
     dialect: "mysql",
