@@ -5,6 +5,11 @@ import { getChatRef, getMessagesRef, getPresenceRef, uuidv4 } from "../config/fi
 class ChatService {
   // Create a new chat room
   createChatRoom = async (payload, userId) => {
+    // Validate userId
+    if (!userId || typeof userId !== 'string' || userId.trim() === '') {
+      return responses[1]("Invalid user ID provided");
+    }
+
     const { name, description, isPrivate = false } = payload;
     
     const firebaseRoomId = uuidv4();
@@ -87,6 +92,11 @@ class ChatService {
     const room = await ChatRoom.findByPk(roomId);
     if (!room) {
       return responses[1]("Chat room not found");
+    }
+
+    // Validate firebaseRoomId
+    if (!room.firebaseRoomId || typeof room.firebaseRoomId !== 'string' || room.firebaseRoomId.trim() === '') {
+      return responses[1]("Invalid Firebase room ID");
     }
 
     const firebaseMessageId = uuidv4();
@@ -203,6 +213,11 @@ class ChatService {
 
   // Update user presence
   updateUserPresence = async (userId, isOnline) => {
+    // Validate userId
+    if (!userId || typeof userId !== 'string' || userId.trim() === '') {
+      return responses[1]("Invalid user ID provided");
+    }
+
     await User.update(
       { 
         isOnline,

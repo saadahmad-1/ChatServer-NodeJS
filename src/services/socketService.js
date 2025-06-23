@@ -28,6 +28,12 @@ class SocketService {
         try {
           const { userId, roomId } = data;
           
+          // Validate userId
+          if (!userId || typeof userId !== 'string' || userId.trim() === '') {
+            socket.emit('error', { message: 'Invalid user ID' });
+            return;
+          }
+
           // Verify user is member of the room
           const membership = await RoomMember.findOne({
             where: { userId, roomId, isActive: true }
@@ -62,6 +68,12 @@ class SocketService {
         try {
           const { userId, roomId } = data;
           
+          // Validate userId
+          if (!userId || typeof userId !== 'string' || userId.trim() === '') {
+            socket.emit('error', { message: 'Invalid user ID' });
+            return;
+          }
+          
           socket.leave(roomId);
           this.connectedUsers.delete(userId);
           
@@ -82,6 +94,12 @@ class SocketService {
         try {
           const { userId, roomId, content, messageType = 'text', metadata = {} } = data;
           
+          // Validate userId
+          if (!userId || typeof userId !== 'string' || userId.trim() === '') {
+            socket.emit('error', { message: 'Invalid user ID' });
+            return;
+          }
+          
           // Verify user is member of the room
           const membership = await RoomMember.findOne({
             where: { userId, roomId, isActive: true }
@@ -95,6 +113,12 @@ class SocketService {
           const room = await ChatRoom.findByPk(roomId);
           if (!room) {
             socket.emit('error', { message: 'Room not found' });
+            return;
+          }
+
+          // Validate firebaseRoomId
+          if (!room.firebaseRoomId || typeof room.firebaseRoomId !== 'string' || room.firebaseRoomId.trim() === '') {
+            socket.emit('error', { message: 'Invalid Firebase room ID' });
             return;
           }
 
@@ -152,6 +176,12 @@ class SocketService {
         try {
           const { messageId, userId } = data;
           
+          // Validate userId
+          if (!userId || typeof userId !== 'string' || userId.trim() === '') {
+            socket.emit('error', { message: 'Invalid user ID' });
+            return;
+          }
+          
           const message = await Message.findByPk(messageId);
           if (!message) {
             socket.emit('error', { message: 'Message not found' });
@@ -196,6 +226,12 @@ class SocketService {
 
   async updateUserPresence(userId, isOnline) {
     try {
+      // Validate userId
+      if (!userId || typeof userId !== 'string' || userId.trim() === '') {
+        console.error('Invalid user ID provided for presence update:', userId);
+        return;
+      }
+
       await User.update(
         { 
           isOnline,

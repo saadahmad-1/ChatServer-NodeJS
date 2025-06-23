@@ -1,5 +1,10 @@
 const responses = {
-  0: (message = "Success") => ({ responseCode: 0, message, success: true }),
+  0: (message = "Success", data = null) => ({ 
+    responseCode: 0, 
+    message, 
+    success: true,
+    data 
+  }),
   1: (message = "Resource Not Found") => ({
     responseCode: 1,
     message,

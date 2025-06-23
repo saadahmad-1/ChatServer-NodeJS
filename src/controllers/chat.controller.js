@@ -117,6 +117,11 @@ export const updateUserPresence = async (req, res, next) => {
       return res.status(401).json({ message: "User authentication required" });
     }
 
+    // Validate userId format
+    if (typeof userId !== 'string' || userId.trim() === '') {
+      return res.status(400).json({ message: "Invalid user ID format" });
+    }
+
     const resp = await chatService.updateUserPresence(userId, isOnline);
     return res.status(200).json(resp);
   } catch (err) {
