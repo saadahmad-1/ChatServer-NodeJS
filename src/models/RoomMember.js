@@ -53,4 +53,4 @@ RoomMember.init(
   }
 );
 
-export default RoomMember; 
+export default RoomMember;

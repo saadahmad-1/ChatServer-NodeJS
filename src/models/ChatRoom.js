@@ -44,4 +44,4 @@ ChatRoom.init(
   }
 );
 
-export default ChatRoom; 
+export default ChatRoom;

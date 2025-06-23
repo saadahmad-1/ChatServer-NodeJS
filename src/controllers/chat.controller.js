@@ -146,4 +146,4 @@ export const markMessageAsRead = async (req, res, next) => {
     console.log("Error:", err);
     next(err);
   }
-}; 
+};

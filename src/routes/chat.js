@@ -654,4 +654,4 @@ router.put(
   chatController.updateUserPresence
 );
 
-export default router; 
+export default router;

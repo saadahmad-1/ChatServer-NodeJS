@@ -271,4 +271,4 @@ class SocketService {
   }
 }
 
-export default new SocketService(); 
+export default new SocketService();

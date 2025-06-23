@@ -36,4 +36,4 @@ export default {
     port: env.DB_PORT,
     dialect: 'mysql'
   }
-}; 
+};

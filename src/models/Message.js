@@ -56,4 +56,4 @@ Message.init(
   }
 );
 
-export default Message; 
+export default Message;
